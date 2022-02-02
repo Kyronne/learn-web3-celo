@@ -13,9 +13,12 @@ export default async function connect(
     const kit = newKit(url);
 
     // Create a new contract instance with the HelloWorld contract info
-    const instance = undefined;
+    const instance = new kit.web3.eth.Contract(
+      HelloWorld.abi,
+      contract
+  );
     // Call the getName function of the on-chain contract
-    const name = undefined;
+    const name = await instance.methods.getName().call();
 
     res.status(200).json(name);
   } catch (error) {
